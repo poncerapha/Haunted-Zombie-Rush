@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : MonoBehaviour {
+public class Rock : PlatformMoviment 
+{
 
     [SerializeField] Vector3 topPosition;
     [SerializeField] Vector3 bottomPosition;
@@ -12,8 +13,13 @@ public class Rock : MonoBehaviour {
         StartCoroutine(Move(bottomPosition));
 		
 	}
-	
-	IEnumerator Move(Vector3 target)
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    IEnumerator Move(Vector3 target)
     {
         while(Mathf.Abs((target - transform.localPosition).y) > 0.20f) {
             Vector3 direction = target.y == topPosition.y ? Vector3.up : Vector3.down;
